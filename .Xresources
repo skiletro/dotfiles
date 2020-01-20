@@ -1,0 +1,16 @@
+#define fontSize 10
+
+URxvt*scrollBar: false
+URxvt*scrollBar_right: false
+URxvt*internalBorder: 24
+URxvt*externalBorder: 0
+
+URxvt.copyCommand: xclip -i -selection clipboard
+URxvt.pasteCommand: xclip -o -selection clipboard
+
+URxvt.font: xft:SourceCodePro-Regular:size=fontSize
+URxvt.boldFont: xft:SourceCodePro-Bold:size=fontSize
+URxvt.italicFont: xtf:SourceCodePro-Italic:size=fontSize
+URxvt.boldItalicFont: xft:SourceCodePro-BoldItalic:size=fontSize
+
+rofi.color-enabled: true

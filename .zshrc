@@ -8,7 +8,7 @@ export ZSH="/home/james/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+ZSH_THEME="zhann"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -98,15 +98,10 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-alias "ufetch"="sh ~/.scripts/ufetch"
+export PATH="$PATH:/home/james/.scripts/"
 alias "shutdown"="/sbin/shutdown"
 alias "xrdb-r"="xrdb ~/.Xresources && wal -R"
-refreshbg() {
-	wal -c
-	wal -i .wall.png
-}
-setbg() {
-	wget -O .wall.png "$1"
-	wal -c
-	wal -i .wall.png
-}
+
+# nvm shit, commented out as it makes the shell load slower.
+#export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm

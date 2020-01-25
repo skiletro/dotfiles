@@ -1,4 +1,4 @@
-!  __  ___ __ ___  ___  ___  _   _ _ __ ___ ___  ___   !
+  __  ___ __ ___  ___  ___  _   _ _ __ ___ ___  ___   !
 !  \ \/ / '__/ _ \/ __|/ _ \| | | | '__/ __/ _ \/ __|  !
 !   >  <| | |  __/\__ \ (_) | |_| | | | (_|  __/\__ \  !
 !  /_/\_\_|  \___||___/\___/ \__,_|_|  \___\___||___/  !
@@ -19,10 +19,10 @@ URxvt*externalBorder: 0
 URxvt.copyCommand: xclip -i -selection clipboard
 URxvt.pasteCommand: xclip -o -selection clipboard
 
-URxvt.font: xft:SourceCodePro-Regular:size=fontSize
-URxvt.boldFont: xft:SourceCodePro-Bold:size=fontSize
-URxvt.italicFont: xtf:SourceCodePro-Italic:size=fontSize
-URxvt.boldItalicFont: xft:SourceCodePro-BoldItalic:size=fontSize
+URxvt.font: xft:Iosevka:size=fontSize
+URxvt.boldFont: xft:Iosevka-Bold:size=fontSize
+URxvt.italicFont: xtf:Iosevka-Italic:size=fontSize
+URxvt.boldItalicFont: xft:Iosevka-BoldItalic:size=fontSize
 
 !  x------------------------------------------------x  !
 !  | Xft fonts                                      |  !

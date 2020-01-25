@@ -1,0 +1,13 @@
+#!/bin/bash
+
+sel=$(printf "change theme\nlogout\nshutdown" | rofi -dmenu -p "what do you want to do?" -l 3)
+if [ "$sel" = "change theme" ]; then
+	theme=$(wpg -l | rofi -dmenu -p "what theme?")
+	wpg -s $theme
+elif [ "$sel" = "logout" ]; then
+	#i3-msg exit
+	printf hi
+elif [ "$sel" = "shutdown" ]; then
+	#/usr/sbin/shutdown
+	printf bruh
+fi

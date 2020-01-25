@@ -1,13 +1,27 @@
 #!/bin/bash
 
+areyousure () {
+	u=$(printf "no\nyes" | rofi -dmenu -p "are you sure?" -l 2)
+	if [ "$u" = "yes" ]; then
+		return 0
+	else
+		return 1
+	fi
+}
+
 sel=$(printf "change theme\nlogout\nshutdown" | rofi -dmenu -p "what do you want to do?" -l 3)
 if [ "$sel" = "change theme" ]; then
 	theme=$(wpg -l | rofi -dmenu -p "what theme?")
-	wpg -s $theme
+	wpg -s $theme 
+
 elif [ "$sel" = "logout" ]; then
-	#i3-msg exit
-	printf hi
-elif [ "$sel" = "shutdown" ]; then
-	#/usr/sbin/shutdown
-	printf bruh
+	areyousure
+	if [[ $? -eq 0 ]]; then
+		i3-msg exit
+	fi
+
+elif [ "$sel" = "shutdown" ]; then	areyousure
+	if [[ $? -eq 0 ]]; then
+		/usr/sbin/shutdown now
+	fi
 fi

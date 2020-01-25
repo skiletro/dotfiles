@@ -3,14 +3,15 @@ set $super Mod4
 set $alt Mod1
 
 #autostart
-exec --no-startup-id wal -R
+exec --no-startup-id wal -R &
 exec --no-startup-id xsettingsd &
-exec --no-startup-id compton -b
+exec --no-startup-id picom -b
 
 # grab colours
 set_from_resource $fg i3wm.foreground
 set_from_resource $bg i3wm.background
 set_from_resource $c3 i3wm.color3
+set_from_resource $c5 iw3m.color5
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -18,16 +19,16 @@ font pango: Source Code Pro Regular 10
 
 # border shit
 
-for_window [class=".*"] border pixel 3
+for_window [class=".*"] border pixel 0
 gaps inner 10
 gaps top -10
 
 # colours n that
 # class                 border  backgr. text indicator child_border
-client.focused          $bg     $bg     $fg  $bg       $fg
-client.focused_inactive $bg     $bg     $fg  $bg       $bg
-client.unfocused        $bg     $bg     $fg  $bg       $bg
-client.urgent           $bg     $bg     $fg  $bg       $bg
+client.focused          $bg     $bg     $fg  $fg       $c5
+client.focused_inactive $bg     $bg     $fg  $fg       $fg
+client.unfocused        $bg     $bg     $fg  $bg       $fg
+client.urgent           $bg     $bg     $fg  $bg       $fg
 
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
@@ -94,6 +95,9 @@ bindsym $super+e layout toggle split
 
 # toggle tiling / floating
 bindsym $super+space floating toggle
+
+# floating shit
+for_window[class=Wpg] floating enable
 
 # change focus between tiling / floating windows
 bindsym $super+Shift+space focus mode_toggle

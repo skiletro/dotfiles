@@ -1,0 +1,21 @@
+@import "https://discordtheme.alexflipnote.dev/theme.css";
+
+  :root {{
+    --accent: {color1};
+    --dark-highlight: {color0};
+    --dark-primary: {color0};
+    --dark-secondary: {color0};
+    --discord-logo: 1;
+    --discord-logo-line: 1;
+    --light-dark-text: #2e3136;
+    --light-highlight: #9e9e9e;
+    --light-primary: #ddd;
+    --light-secondary: #ecf0f1;
+    --notif: {color5};
+	font-family: "Source Code Pro";
+}}
+
+* {{
+	font-family: "Source Code Pro" !important;
+}}
+

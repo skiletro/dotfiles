@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# some shit script that i'm writing which acts as a "ctrl+alt+del on Windows" equivalent,
+# giving me all the shit i need like changing themes, logging out, etc.
+
 areyousure () {
 	u=$(printf "no\nyes" | rofi -dmenu -p "are you sure?" -l 2)
 	if [ "$u" = "yes" ]; then
@@ -20,7 +23,8 @@ elif [ "$sel" = "logout" ]; then
 		i3-msg exit
 	fi
 
-elif [ "$sel" = "shutdown" ]; then	areyousure
+elif [ "$sel" = "shutdown" ]; then
+	areyousure
 	if [[ $? -eq 0 ]]; then
 		/usr/sbin/shutdown now
 	fi

@@ -46,6 +46,7 @@ bindsym $super+Return exec rxvt-unicode
 
 # shortcuts
 bindsym $super+Shift+w exec brave-browser
+bindsym $super+Shift+f exec thunar
 
 # kill focused window
 bindsym $super+c kill

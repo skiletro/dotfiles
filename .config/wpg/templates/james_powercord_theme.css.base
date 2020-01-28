@@ -12,10 +12,10 @@
     --light-primary: #ddd;
     --light-secondary: #ecf0f1;
     --notif: {color5};
-	font-family: "Source Code Pro";
+	font-family: "Iosevka";
 }}
 
 * {{
-	font-family: "Source Code Pro" !important;
+	font-family: "Iosevka" !important;
 }}
 

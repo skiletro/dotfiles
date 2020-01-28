@@ -4,7 +4,7 @@
 # giving me all the shit i need like changing themes, logging out, etc.
 
 areyousure () {
-	u=$(printf "no\nyes" | rofi -dmenu -p "are you sure?" -l 2)
+	u=$(printf "no\nyes" | rofi -dmenu -p "are you sure?" -l 2 -width 10)
 	if [ "$u" = "yes" ]; then
 		return 0
 	else
@@ -12,9 +12,10 @@ areyousure () {
 	fi
 }
 
-sel=$(printf "change theme\nlogout\nshutdown" | rofi -dmenu -p "what do you want to do?" -l 3)
+sel=$(printf "change theme\nlogout\nshutdown" | rofi -dmenu -p "what do you want to do?" -l 3 -width 15)
 if [ "$sel" = "change theme" ]; then
-	theme=$(wpg -l | rofi -dmenu -p "what theme?")
+	#theme=$(wpg -l | sed -e 's/-/ /g' | awk -F '\\.*' '{print $1}' | rofi -dmenu -p "what theme?")
+	theme=$(wpg -l | rofi -dmenu -p "what theme?" -width 25)
 	wpg -s $theme 
 
 elif [ "$sel" = "logout" ]; then

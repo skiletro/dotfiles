@@ -14,9 +14,10 @@ areyousure () {
 
 sel=$(printf "change theme\nlogout\nshutdown" | rofi -dmenu -p "what do you want to do?" -l 3 -width 15)
 if [ "$sel" = "change theme" ]; then
-	#theme=$(wpg -l | sed -e 's/-/ /g' | awk -F '\\.*' '{print $1}' | rofi -dmenu -p "what theme?")
-	theme=$(wpg -l | rofi -dmenu -p "what theme?" -width 25)
-	wpg -s $theme 
+	a=$(wpg -l | sed -e 's/-/ /g' | awk -F '\\.*' '{print $1}' | rofi -dmenu -p "what theme?" -width 15)
+	b=$(echo $a | sed -e 's/ /-/g')
+	c=$(wpg -l | grep $b)
+	wpg -s $c
 
 elif [ "$sel" = "logout" ]; then
 	areyousure

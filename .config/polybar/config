@@ -23,34 +23,38 @@ primary = ${xrdb:color5:#222}
 secondary = ${xrdb:color1:#222}
 alert = ${xrdb:color5:#222}
 
+color1 = ${xrdb:color1:#222}
+
 [bar/main]
 ;monitor = ${env:MONITOR:HDMI-1}
 width = 100%
-height = 30
-radius = 7.5
+height = 20
+radius = 0
 fixed-center = true
 
-background = ${colors.background}
+background = #00000000
 foreground = ${colors.foreground}
 
 line-size = 3
 line-color = #f00
 
-border-size = 10
+border-size = 0
 border-color = #00000000
 
-padding-left = 2
-padding-right = 2
+padding-left = 0
+padding-right = 0
 
-module-margin-left = 1
-module-margin-right = 1
+module-margin-left = 0
+module-margin-right = 0
 
-font-0 = Iosevka:pixelsize=10;0
-font-1 = Siji:pixelsize=10;0
+font-0 = Ttyp0:pixelsize=13;2
+font-1 = Siji:pixelsize=13;01
+font-2 = unifont:fontformat=truetype:size=10:antialias=false;0
+font-3 = unifont:fontformat=truetype:size=6:antialias=false;-3
 
-modules-left = i3
-modules-center = xwindow
-modules-right = filesystem pulseaudio date time
+modules-left = spotifytemp leftfade1
+modules-center = midfadel workspaces midfader
+modules-right = fade4 filesystem fade3 pulseaudio fade2 date fade1 time
 
 tray-position = none
 tray-detatched = true
@@ -71,11 +75,10 @@ interval = 25
 
 mount-0 = /
 
-label-mounted =  %percentage_used%%
-label-unmounted = %mountpoint% not mounted
-label-indicator-underline = ${colors.primary}
-label-mounted-underline = ${colors.primary}
-label-unmounted-underline = ${colors.primary}
+label-mounted = "  %percentage_used%% "
+label-mounted-foreground = ${xrdb:background:#222}
+label-mounted-background = ${xrdb:color12:#222}
+label-unmounted =  %mountpoint% disconnected.
 
 [module/i3]
 type = internal/i3
@@ -84,70 +87,136 @@ index-sort = true
 wrapping-scroll = false
 
 ; Only show workspaces on the same output as the bar
-;pin-workspaces = true
+pin-workspaces = true
 
 label-mode-padding = 2
 label-mode-foreground = #000
 label-mode-background = ${colors.primary}
 
 ; focused = Active workspace on focused monitor
-label-focused = %index%
+label-focused = "%{F#c05740}[%{F-}%name%%{F#c05740}]%{F-}"
 label-focused-background = ${colors.background}
-label-focused-underline= ${colors.primary}
-label-focused-padding = 1
+label-focused-padding = 0
 
 ; unfocused = Inactive workspace on any monitor
-label-unfocused = %index%
-label-unfocused-padding = 1
+label-unfocused = " %name% "
+label-unfocused-padding = 0
 
 ; visible = Active workspace on unfocused monitor
-label-visible = %index%
+label-visible = %name%
 label-visible-background = ${self.label-focused-background}
-label-visible-underline = ${self.label-focused-underline}
 label-visible-padding = ${self.label-focused-padding}
 
 ; urgent = Workspace with urgency hint set
-label-urgent = %index%
-label-urgent-background = ${colors.alert}
-label-urgent-padding = 1
+label-urgent = "%{F#c05740}[%{F-}%name%%{F#c05740}]%{F-}"
+label-urgent-background = ${colors.background}
+label-urgent-padding = 0
 
-; Separator in between workspaces
-; label-separator = |
+strip-wsnumbers = true
 
 [module/date]
 type = internal/date
 interval = 5
 
-date = "%d %b, %Y"
-
-time = %I:%M%P
-
-format-underline = ${colors.primary}
-
+date = " %d %b, %Y "
 label = %date%
+
+format = " <label> "
+format-background = ${xrdb:color10:#222}
+format-foreground = ${xrdb:background:#222}
 
 [module/time]
 type = internal/date
 interval = 5
 
-date = "%d %b, %Y"
-
-time = %I:%M%P
-
-format-underline = ${colors.primary}
-
+time = " %I:%M%P "
 label = %time%
+
+format = "<label>"
+format-background = ${xrdb:color9:#222}
+format-foreground = ${xrdb:background:#222}
 
 [module/pulseaudio]
 type = internal/pulseaudio
 
 format-volume = <label-volume>
-label-volume-underline = ${colors.primary}
-label-volume =  %percentage%%
-label-volume-foreground = ${root.foreground}
+label-volume = "  %percentage%% "
+label-volume-foreground = ${xrdb:background:#222}
+label-volume-background = ${xrdb:color11:#222}
 
-label-muted =  %percentage%%
-label-muted-foreground = #666
+label-muted = "  Muted "
+label-muted-foreground = ${xrdb:background:#222}
+label-muted-background = ${xrdb:color11:#222}
+
+[module/spotify]
+type = custom/script
+interval = 1
+format-prefix = "  "
+format-background = ${xrdb:color14:#222}
+format-foreground = ${xrdb:background:#222}
+format = "<label> "
+exec = python3 ~/.config/polybar/scripts/spotify.py -f '{artist} - {song}'
+
+[module/workspaces]
+type = custom/script
+interval = 0.1
+format = "<label>"
+format-background = ${xrdb:color13:#222}
+format-foreground = ${xrdb:background:#222}
+exec = bash ~/.scripts/i3work
+
+[module/cust-div]
+type = custom/text
+content-foreground = ${xrdb:color1:#222}
+content = " / "
+
+[module/fade1]
+type = custom/text
+content-foreground = ${xrdb:color9:#222}
+content-background = ${xrdb:color10:#222}
+content = "%{T4}▒%{T-}▓"
+
+[module/fade2]
+type = custom/text
+content-foreground = ${xrdb:color10:#222}
+content-background = ${xrdb:color11:#222}
+content = "%{T4}▒%{T-}▓"
+
+[module/fade3]
+type = custom/text
+content-foreground = ${xrdb:color11:#222}
+content-background = ${xrdb:color12:#222}
+content = "%{T4}▒%{T-}▓"
+
+[module/fade4]
+type = custom/text
+content-foreground = ${xrdb:color12:#222}
+;content-background = ${xrdb:background:#222}
+content = "%{T4}▒%{T-}▓"
+
+[module/midfadel]
+type = custom/text
+content-foreground = ${xrdb:color13:#222}
+;content-background = ${xrdb:background:#222}
+content = "%{T4}▒%{T-}▓"
+
+[module/midfader]
+type = custom/text
+content-foreground = ${xrdb:color13:#222}
+;content-background = ${xrdb:background:#222}
+content = "%{T-}▓%{T4}▒"
+
+[module/leftfade1]
+type = custom/text
+content-foreground = ${xrdb:color14:#222}
+;content-background = ${xrdb:background:#222}
+content = "%{T-}▓%{T4}▒"
+
+[module/spotifytemp]
+type = custom/text
+content-background = ${xrdb:color14:#222}
+content-foreground = ${xrdb:background:#222}
+content = " james@navi "
 
 [settings]
 screenchange-reload = true

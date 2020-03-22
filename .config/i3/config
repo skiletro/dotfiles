@@ -16,13 +16,13 @@ set_from_resource $c5 iw3m.color5
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango: Iosevka 10
+#font pango: Iosevka 10
+font pango: CozetteVector 10
 
 # border shit
 
-for_window [class=".*"] border pixel 0
+for_window [class=".*"] border pixel 2
 gaps inner 10
-gaps top -10
 
 # colours n that
 # class                 border  backgr. text indicator child_border
@@ -102,16 +102,10 @@ bindsym $super+e layout toggle split
 bindsym $super+space floating toggle
 
 # floating shit
-for_window[class=Wpg] floating enable
+for_window[class=Wpg|Lxappearance|Eog] floating enable
 
 # change focus between tiling / floating windows
 bindsym $super+Shift+space focus mode_toggle
-
-# focus the parent container
-bindsym $super+a focus parent
-
-# focus the child container
-#bindsym $super+d focus child
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -121,10 +115,6 @@ set $ws3 "3"
 set $ws4 "4"
 set $ws5 "5"
 set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9"
-set $ws10 "10"
 
 # switch to workspace
 bindsym $super+1 workspace $ws1
@@ -132,11 +122,18 @@ bindsym $super+2 workspace $ws2
 bindsym $super+3 workspace $ws3
 bindsym $super+4 workspace $ws4
 bindsym $super+5 workspace $ws5
-bindsym $super+6 workspace $ws6
-bindsym $super+7 workspace $ws7
-bindsym $super+8 workspace $ws8
-bindsym $super+9 workspace $ws9
-bindsym $super+0 workspace $ws10
+
+# incase some random window gets moved, essentially legacy shit.
+bindsym $super+Shift+$alt+1 workspace "1"
+bindsym $super+Shift+$alt+2 workspace "2"
+bindsym $super+Shift+$alt+3 workspace "3"
+bindsym $super+Shift+$alt+4 workspace "4"
+bindsym $super+Shift+$alt+5 workspace "5"
+bindsym $super+Shift+$alt+6 workspace "6"
+bindsym $super+Shift+$alt+7 workspace "7"
+bindsym $super+Shift+$alt+8 workspace "8"
+bindsym $super+Shift+$alt+9 workspace "9"
+bindsym $super+Shift+$alt+0 workspace "10"
 
 # move focused container to workspace
 bindsym $super+Shift+1 move container to workspace $ws1
